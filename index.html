@@ -40,19 +40,20 @@
             padding: 24px 16px;
             color: var(--text-primary);
             font-variant-numeric: tabular-nums;
+            overflow-x: hidden;
         }
 
         .container {
             max-width: 1080px;
             margin: 0 auto;
             background: #bdbbbbd1;
-            /* border: 1px solid var(--border-light); */
             border-radius: var(--radius-panel);
             padding: 20px;
             box-shadow: var(--shadow-panel);
             display: flex;
             flex-direction: column;
             gap: 20px;
+            overflow-x: hidden;
         }
 
         /* نوار ابزار و سوییچ‌ها */
@@ -61,17 +62,18 @@
             padding: 12px 14px 0px 12px;
             border-radius: var(--radius-card);
             display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
+            flex-direction: column;
+            align-items: flex-start;
             gap: 12px;
         }
 
         .file-controls {
             display: flex;
             align-items: center;
+            justify-content: flex-start;
             gap: 10px;
             flex-wrap: wrap;
+            min-width: 0;
         }
 
         #fileNameLabel {
@@ -89,7 +91,9 @@
             display: flex;
             gap: 8px;
             align-items: center;
+            justify-content: flex-start;
             flex-wrap: wrap;
+            width: auto;
         }
 
         /* کلیدهای سوییچ */
@@ -107,6 +111,9 @@
             border-radius: 12px;
             box-shadow: var(--shadow-card);
             transition: border-color 0.2s ease, background 0.2s ease;
+            min-width: 0;
+            width: auto;
+            flex: 0 0 auto;
         }
 
         .switch-label:hover {
@@ -174,6 +181,7 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            min-width: 0;
         }
 
         .card-header {
@@ -341,7 +349,7 @@
             align-items: center;
             justify-content: center;
             overflow: hidden;
-		margin-bottom: 5px;
+            margin-bottom: 5px;
         }
 
         .loader::before {
@@ -390,7 +398,7 @@
         }
 
         .loader-caption {
-		margin-bottom: 100px;
+            margin-bottom: 100px;
             color: #e2e8f0;
             font-size: 15px;
             text-align: center;
@@ -435,12 +443,113 @@
             display: flex;
             align-items: center;
             gap: 8px;
+            max-width: calc(100vw - 32px);
         }
 
         .toast-box.show {
             opacity: 1;
             visibility: visible;
             transform: translateX(-50%) translateY(0);
+        }
+
+        /* تنظیمات واکنش‌گرا برای موبایل اندرویدی عادی */
+        @media (max-width: 600px) {
+            body {
+                padding: 12px 10px;
+            }
+
+            .container {
+                border-radius: 24px;
+                padding: 12px;
+                gap: 14px;
+            }
+
+            .file-input-wrapper {
+                padding: 4px 2px 0 2px;
+                gap: 10px;
+                align-items: flex-start;
+            }
+
+            .file-controls {
+                width: auto;
+                justify-content: flex-start;
+                gap: 8px;
+            }
+
+            #fileNameLabel {
+                max-width: 190px;
+                font-size: 12px !important;
+                padding: 6px 10px;
+            }
+
+            .checkbox-group {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 6px;
+                width: auto;
+                justify-content: flex-start;
+            }
+
+            .switch-label {
+                justify-content: flex-start;
+                gap: 5px;
+                padding: 7px 9px;
+                font-size: 11px;
+                border-radius: 11px;
+                white-space: nowrap;
+                flex: 0 0 auto;
+                width: auto;
+            }
+
+            .switch-label .btn-icon {
+                width: 14px !important;
+                height: 14px !important;
+            }
+
+            .switch-container {
+                width: 28px;
+                height: 16px;
+            }
+
+            .switch-slider:before {
+                height: 12px;
+                width: 12px;
+                left: 2px;
+                bottom: 2px;
+            }
+
+            .switch-container input:checked + .switch-slider:before {
+                transform: translateX(12px);
+            }
+
+            .workspace-grid {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+
+            .panel-card {
+                border-radius: 22px;
+                padding: 12px;
+            }
+
+            textarea {
+                min-height: 175px;
+                border-radius: 16px;
+                font-size: 12.5px;
+                padding: 10px 12px;
+            }
+
+            .card-actions {
+                padding-top: 12px;
+                gap: 8px;
+            }
+
+            .card-actions button,
+            .card-actions .download-btn {
+                flex: 1 1 auto;
+                padding: 9px 11px;
+                font-size: 12px;
+            }
         }
     </style>
 </head>
